@@ -4,7 +4,7 @@ import styled from "styled-components";
 export async function getServerSideProps() {
   const url =
     process.env.NODE_ENV === "production"
-      ? "https://today-note.vercel.app/api/test"
+      ? "https://mynote-gilt.vercel.app/api/test"
       : "http://localhost:3000/api/test";
 
   const response = await fetch(url);
@@ -16,7 +16,7 @@ export async function getServerSideProps() {
 export default function testpage({ data }) {
   const newurl =
     process.env.NODE_ENV === "production"
-      ? "https://today-note.vercel.app/api/newdata"
+      ? "https://mynote-gilt.vercel.app/api/newdata"
       : "http://localhost:3000/api/newdata";
 
   const [number, setNumber] = useState(0);
