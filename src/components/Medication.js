@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const Medication = () => {
   return (
     <Container>
       <Header>오늘 약을 먹었나요?</Header>
       <GridContainer>
-        <MedicationCheck>
+        <MedicationCheck whileTap={{ scale: 0.95 }}>
           <Image
             src={require("../assets/sunny.png")}
             alt="sunny"
@@ -14,7 +15,7 @@ const Medication = () => {
             height={35}
           />
         </MedicationCheck>
-        <MedicationCheck>
+        <MedicationCheck whileTap={{ scale: 0.95 }}>
           <Image
             src={require("../assets/half-moon.png")}
             alt="half-moon"
@@ -22,7 +23,7 @@ const Medication = () => {
             height={35}
           />
         </MedicationCheck>
-        <MedicationCheck>
+        <MedicationCheck whileTap={{ scale: 0.95 }}>
           <Image
             src={require("../assets/sleeping.png")}
             alt="sleeping"
@@ -50,7 +51,7 @@ const Header = styled.p`
   font-weight: 800;
 `;
 
-const MedicationCheck = styled.div`
+const MedicationCheck = styled(motion.div)`
   display: flex;
   justify-content: center;
   align-items: center;
