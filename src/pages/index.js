@@ -2,36 +2,52 @@ import styled from "styled-components";
 import Medication from "@/components/Medication";
 import Behavior from "@/components/Behavior";
 import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
   const [expanded, setExpanded] = useState(null);
   return (
     <Container>
       <Wrapper>
-        <HelloHeader>
-          <Hello>환영해요.</Hello>
-          <Name>황준서님</Name>
-        </HelloHeader>
+        <HeaderContainer>
+          <HelloHeader>
+            <Hello>환영해요.</Hello>
+            <Name>황준서님</Name>
+          </HelloHeader>
+          <Link href="/setting">
+            <HeaderButton>
+              <Image
+                src={require("../assets/settings.svg")}
+                alt="arrow"
+                width={15}
+                height={15}
+              />
+            </HeaderButton>
+          </Link>
+        </HeaderContainer>
         <Medication />
         <Header>행동 보고</Header>
-        <Behavior
-          expanded={expanded}
-          img={"sun"}
-          header={"오전"}
-          explain={"기상후 ~ 11:59"}
-        />
-        <Behavior
-          expanded={expanded}
-          img={"moon"}
-          header={"오후"}
-          explain={"12:00 ~ 17:59"}
-        />
-        <Behavior
-          expanded={expanded}
-          img={"zzz"}
-          header={"밤"}
-          explain={"18:00 ~ 취침전"}
-        />
+        <>
+          <Behavior
+            expanded={expanded}
+            img={"sun"}
+            header={"오전"}
+            explain={"기상후 ~ 11:59"}
+          />
+          <Behavior
+            expanded={expanded}
+            img={"moon"}
+            header={"오후"}
+            explain={"12:00 ~ 17:59"}
+          />
+          <Behavior
+            expanded={expanded}
+            img={"zzz"}
+            header={"밤"}
+            explain={"18:00 ~ 취침전"}
+          />
+        </>
         <Header>특이사항</Header>
       </Wrapper>
     </Container>
@@ -54,12 +70,34 @@ const Wrapper = styled.div`
   max-width: 840px;
   color: #0d1f3c;
   padding: 0px 25px;
-  padding-top: 40px;
+  padding-top: 30px;
+`;
+
+const HeaderContainer = styled.div`
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 30px;
 `;
 
 const HelloHeader = styled.div`
   width: 100%;
-  margin-bottom: 30px;
+`;
+
+const HeaderButton = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 32px;
+  height: 32px;
+  border: none;
+  background-color: #f7f8f8;
+  color: #1d1617;
+  border-radius: 8px;
+  cursor: pointer;
 `;
 
 const Hello = styled.p`
@@ -76,7 +114,7 @@ const Name = styled.p`
 `;
 
 const Header = styled.p`
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 800;
   margin-top: 30px;
 `;

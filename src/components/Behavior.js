@@ -21,7 +21,7 @@ const Behavior = ({ img = sun, header, explain, expanded }) => {
           </div>
           <Image
             src={require("../assets/right-arrow1.svg")}
-            alit="arrow"
+            alt="arrow"
             width={35}
             height={35}
           />
