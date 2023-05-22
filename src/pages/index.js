@@ -1,129 +1,99 @@
 import styled from "styled-components";
-import Medication from "@/components/Medication";
-import Behavior from "@/components/Behavior";
+
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+
 import Image from "next/image";
 
 export default function Home() {
-  const [expanded, setExpanded] = useState(null);
-
-  useEffect(() => {
-    console.log(expanded);
-  }, [expanded]);
   return (
-    <Container>
-      <Wrapper>
-        <HeaderContainer>
-          <HelloHeader>
-            <Hello>환영해요.</Hello>
-            <Name>황준서님</Name>
-          </HelloHeader>
-          <Link href="/setting">
-            <HeaderButton>
+    <Background>
+      <MainContainer>
+        <MainWrapper>
+          <MainPageHeaderContainer>
+            <Profile>
               <Image
-                src={require("../assets/settings.svg")}
-                alt="arrow"
-                width={25}
-                height={25}
+                src={require("../../public/assets/user.svg")}
+                width={20}
+                height={20}
               />
-            </HeaderButton>
-          </Link>
-        </HeaderContainer>
-        <Medication />
-        <Header>행동 보고</Header>
-        <>
-          <Behavior
-            setExpanded={setExpanded}
-            expanded={expanded}
-            img={"sun"}
-            header={"오전"}
-            explain={"기상후 ~ 11:59"}
-          />
-          <Behavior
-            setExpanded={setExpanded}
-            expanded={expanded}
-            img={"moon"}
-            header={"오후"}
-            explain={"12:00 ~ 17:59"}
-          />
-          <Behavior
-            setExpanded={setExpanded}
-            expanded={expanded}
-            img={"zzz"}
-            header={"밤"}
-            explain={"18:00 ~ 취침전"}
-          />
-        </>
-        <Header>특이사항</Header>
-      </Wrapper>
-    </Container>
+            </Profile>
+            <Name>황준서님</Name>
+          </MainPageHeaderContainer>
+          <ContentsBox>1</ContentsBox>
+        </MainWrapper>
+      </MainContainer>
+    </Background>
   );
 }
 
-const Container = styled.div`
+const Background = styled.div`
+  position: relative;
   width: 100%;
   height: 100vh;
-  background-color: #f2f4f6;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/bgbg.jpg");
+    background-size: cover;
+    background-position: center;
+    opacity: 1;
+    filter: blur(300px);
+  }
+`;
+
+const MainContainer = styled.div`
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `;
 
-const Wrapper = styled.div`
+const MainWrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 840px;
   color: #0d1f3c;
-  padding: 0px 25px;
-  padding-top: 30px;
+  padding: 30px 18px;
+  /* background-color: white; */
 `;
 
-const HeaderContainer = styled.div`
+const MainPageHeaderContainer = styled.div`
   display: flex;
-
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  margin-bottom: 30px;
-`;
-
-const HelloHeader = styled.div`
-  width: 100%;
-`;
-
-const HeaderButton = styled.button`
-  display: flex;
-  justify-content: center;
   align-items: center;
 
-  width: 32px;
-  height: 32px;
-  border: none;
-
-  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px 0px; */
-  background: none;
-  color: #1d1617;
-  border-radius: 8px;
-  cursor: pointer;
-`;
-
-const Hello = styled.p`
-  color: #ada4a5;
-  font-size: 15px;
-  font-weight: 300;
-  margin-bottom: 5px;
+  height: 42px;
+  margin-bottom: 20px;
 `;
 
 const Name = styled.p`
-  color: #1d1617;
-  font-size: 26px;
-  font-weight: 900;
+  font-weight: 800;
+  font-size: 24px;
 `;
 
-const Header = styled.p`
-  font-size: 22px;
-  font-weight: 800;
-  margin-top: 30px;
+const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background-color: white;
+  margin-right: 15px;
+`;
+
+const ContentsBox = styled.div`
+  width: 100%;
+  height: 180px;
+  background-color: white;
+  border-radius: 22px;
+  padding: 20px;
 `;
