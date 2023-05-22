@@ -39,14 +39,15 @@ const Medication = () => {
 const Container = styled.div`
   width: 100%;
   height: min-content;
-  background: rgba(146, 163, 253, 0.2);
-  border-radius: 22px;
+  background: white;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px 0px;
+  border-radius: 16px;
   padding: 20px;
 `;
 
 const Header = styled.p`
   margin-bottom: 12px;
-  font-size: 17px;
+  font-size: 18px;
   color: #1d1617;
   font-weight: 800;
 `;
@@ -57,7 +58,7 @@ const MedicationCheck = styled(motion.div)`
   align-items: center;
   width: 100%;
   height: 50px;
-  background-color: white;
+  background-color: rgba(146, 163, 253, 0.16);
   border-radius: 12px;
   margin-right: 10px;
   padding: 10px;

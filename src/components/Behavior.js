@@ -2,10 +2,14 @@ import Image from "next/image";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-const Behavior = ({ img = sun, header, explain, expanded }) => {
+const Behavior = ({ img = sun, header, explain, expanded, setExpanded }) => {
   return (
     <>
-      <Container>
+      <Container
+        onClick={() => {
+          setExpanded(img);
+        }}
+      >
         <Circle>
           <Image
             src={require(`../assets/${img}.png`)}
@@ -45,22 +49,25 @@ const Container = styled(motion.div)`
   display: flex;
   width: 100%;
   height: min-content;
-  box-shadow: 0px 10px 40px rgba(29, 22, 23, 0.07);
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px 0px;
+  background-color: white;
   border-radius: 16px;
   padding: 15px 20px;
-  margin-top: 10px;
+  margin-top: 15px;
   cursor: pointer;
 `;
 
 const ExpandedContainer = styled(motion.div)`
   display: flex;
-  flex-direction: column;
   width: 100%;
   height: min-content;
-  box-shadow: 0px 10px 40px rgba(29, 22, 23, 0.07);
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px 0px;
+  background-color: white;
   border-radius: 16px;
   padding: 15px 20px;
-  margin-top: 10px;
+  margin-top: 15px;
   cursor: pointer;
 `;
 
@@ -70,7 +77,7 @@ const Circle = styled.div`
   min-width: 50px;
   min-height: 50px;
   border-radius: 50%;
-  background-color: rgba(146, 163, 253, 0.12);
+  background-color: rgba(146, 163, 253, 0.09);
 
   display: flex;
   align-items: center;

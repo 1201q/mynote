@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import Medication from "@/components/Medication";
 import Behavior from "@/components/Behavior";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
   const [expanded, setExpanded] = useState(null);
+
+  useEffect(() => {
+    console.log(expanded);
+  }, [expanded]);
   return (
     <Container>
       <Wrapper>
@@ -20,8 +24,8 @@ export default function Home() {
               <Image
                 src={require("../assets/settings.svg")}
                 alt="arrow"
-                width={15}
-                height={15}
+                width={25}
+                height={25}
               />
             </HeaderButton>
           </Link>
@@ -30,18 +34,21 @@ export default function Home() {
         <Header>행동 보고</Header>
         <>
           <Behavior
+            setExpanded={setExpanded}
             expanded={expanded}
             img={"sun"}
             header={"오전"}
             explain={"기상후 ~ 11:59"}
           />
           <Behavior
+            setExpanded={setExpanded}
             expanded={expanded}
             img={"moon"}
             header={"오후"}
             explain={"12:00 ~ 17:59"}
           />
           <Behavior
+            setExpanded={setExpanded}
             expanded={expanded}
             img={"zzz"}
             header={"밤"}
@@ -57,7 +64,7 @@ export default function Home() {
 const Container = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: white;
+  background-color: #f2f4f6;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +101,9 @@ const HeaderButton = styled.button`
   width: 32px;
   height: 32px;
   border: none;
-  background-color: #f7f8f8;
+
+  /* box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 16px 0px; */
+  background: none;
   color: #1d1617;
   border-radius: 8px;
   cursor: pointer;
