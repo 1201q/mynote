@@ -2,53 +2,28 @@ import styled from "styled-components";
 
 import React, { useEffect, useState } from "react";
 
-import Image from "next/image";
+import MainPageHeader from "@/components/MainPageHeader";
 
 export default function Home() {
   return (
-    <Background>
-      <MainContainer>
-        <MainWrapper>
-          <MainPageHeaderContainer>
-            <Profile>
-              <Image
-                src={require("../../public/assets/user.svg")}
-                width={20}
-                height={20}
-              />
-            </Profile>
-            <Name>황준서님</Name>
-          </MainPageHeaderContainer>
-          <ContentsBox>1</ContentsBox>
-        </MainWrapper>
-      </MainContainer>
-    </Background>
+    <Container>
+      <Wrapper>
+        <MainPageHeader />
+        <SectionHeader>
+          <Header>진행중이에요</Header>
+          <ViewMore>View More</ViewMore>
+        </SectionHeader>
+        <ContentsBox>1</ContentsBox>
+        <SectionHeader>
+          <Header>끝났어요</Header>
+          <ViewMore>View More</ViewMore>
+        </SectionHeader>
+      </Wrapper>
+    </Container>
   );
 }
 
-const Background = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url("../assets/bgbg.jpg");
-    background-size: cover;
-    background-position: center;
-    opacity: 1;
-    filter: blur(300px);
-  }
-`;
-
-const MainContainer = styled.div`
-  position: relative;
-  z-index: 1;
+const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -57,43 +32,40 @@ const MainContainer = styled.div`
   align-items: center;
 `;
 
-const MainWrapper = styled.div`
+const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   max-width: 840px;
-  color: #0d1f3c;
-  padding: 30px 18px;
-  /* background-color: white; */
+  color: #404245;
+  padding: 30px 25px;
+  padding-top: 40px;
+  background-color: #f9fafc;
 `;
 
-const MainPageHeaderContainer = styled.div`
+const SectionHeader = styled.div`
   display: flex;
-  align-items: center;
-
-  height: 42px;
+  justify-content: space-between;
   margin-bottom: 20px;
 `;
 
-const Name = styled.p`
-  font-weight: 800;
-  font-size: 24px;
+const Header = styled.p`
+  font-size: 20px;
+  font-weight: 600;
+  color: #404245;
 `;
 
-const Profile = styled.div`
+const ViewMore = styled.p`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 33px;
-  height: 33px;
-  border-radius: 50%;
-  background-color: white;
-  margin-right: 15px;
+  align-items: flex-end;
+  font-size: 12px;
+  color: rgba(52, 122, 240, 0.8);
+  font-weight: 600;
 `;
 
 const ContentsBox = styled.div`
-  width: 100%;
-  height: 180px;
+  border-radius: 20px;
   background-color: white;
-  border-radius: 22px;
+  height: 300px;
   padding: 20px;
+  margin-bottom: 20px;
 `;
