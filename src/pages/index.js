@@ -50,7 +50,7 @@ const SectionHeader = styled.div`
 
 const Header = styled.p`
   font-size: 20px;
-  font-weight: 600;
+  font-weight: 700;
   color: #404245;
 `;
 
@@ -59,7 +59,7 @@ const ViewMore = styled.p`
   align-items: flex-end;
   font-size: 12px;
   color: rgba(52, 122, 240, 0.8);
-  font-weight: 600;
+  font-weight: 400;
 `;
 
 const ContentsBox = styled.div`
