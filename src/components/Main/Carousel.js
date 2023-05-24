@@ -29,7 +29,7 @@ export default function Carousel() {
               height={35}
             />
           )}
-          <CardWrapper styledopacity={pillTFArr[idx] === false ? 1 : 0.4}>
+          <CardWrapper styledopacity={pillTFArr[idx] === false ? 1 : 0.3}>
             <SmallText>{item}</SmallText>
             <BigText>아직 안먹었어요</BigText>
           </CardWrapper>
@@ -63,11 +63,11 @@ const Card = styled.div`
   min-width: 200px;
   width: 200px;
   height: 100px;
-  margin-right: 10px;
   background-color: white;
   border-radius: 10px;
   padding: 30px 20px;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.07);
+  margin-right: 10px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.03);
 
   img {
     position: absolute;

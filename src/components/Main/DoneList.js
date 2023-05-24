@@ -20,10 +20,17 @@ export default function DoneList() {
         />
         <CardText>푸쉬업을 다 했어요</CardText>
       </Card>
-
       <Card>
         <Image src={require("../../assets/sleep.png")} width={40} height={40} />
         <CardText>낮잠을 잤어요</CardText>
+      </Card>
+      <Card>
+        <Image
+          src={require("../../assets/runner.png")}
+          width={40}
+          height={40}
+        />
+        <CardText>달리기를 했어요</CardText>
       </Card>
       <Card>
         <Image src={require("../../assets/heart.png")} width={40} height={40} />
@@ -35,8 +42,7 @@ export default function DoneList() {
 
 const Container = styled.div`
   display: grid;
-
-  gap: 20px;
+  gap: 15px;
   grid-template-columns: repeat(3, 1fr);
   @media screen and (max-width: 700px) {
     grid-template-columns: repeat(2, 1fr);
@@ -49,11 +55,11 @@ const Card = styled.div`
   justify-content: center;
   height: 100px;
   padding: 20px;
-  background-color: white;
   border-radius: 10px;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.03);
   cursor: pointer;
   font-weight: 800;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.03);
+  background-color: white;
 
   @media screen and (max-width: 700px) {
     height: 130px;

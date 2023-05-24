@@ -56,7 +56,7 @@ const Hello = styled.div`
 
 const MenuHeader = styled.p`
   color: #c5c5cd;
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 20px;
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 18px;
 `;
