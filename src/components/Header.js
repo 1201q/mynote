@@ -6,13 +6,19 @@ const Header = () => {
     <Container>
       <div>
         <Image
-          src={require("../../assets/menu-burger.svg")}
+          src={require("../assets/menu-burger.svg")}
+          alt="menu-burger"
           width={20}
           height={20}
         />
       </div>
       <div>
-        <Image src={require("../../assets/bell.svg")} width={20} height={20} />
+        <Image
+          src={require("../assets/bell.svg")}
+          alt="bell"
+          width={20}
+          height={20}
+        />
       </div>
     </Container>
   );

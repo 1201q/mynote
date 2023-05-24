@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import React from "react";
-import Header from "@/components/Main/Header";
+import Header from "@/components/Header";
 import Carousel from "@/components/Main/Carousel";
+import DoneList from "@/components/Main/DoneList";
 
 export default function Home() {
   return (
@@ -14,11 +15,8 @@ export default function Home() {
         </Padding>
         <Carousel />
         <Padding>
-          <MenuHeader>오늘 할 일</MenuHeader>
-          <Content>1</Content>
-          <Content>2</Content>
-          <Content>2</Content>
-          <Content>2</Content>
+          <MenuHeader>오늘 한 일</MenuHeader>
+          <DoneList />
         </Padding>
       </Wrapper>
     </Container>
@@ -27,11 +25,12 @@ export default function Home() {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-bottom: 50px;
 `;
 
 const Wrapper = styled.div`
@@ -57,21 +56,7 @@ const Hello = styled.div`
 
 const MenuHeader = styled.p`
   color: #c5c5cd;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 600;
   margin-bottom: 20px;
-`;
-
-const Content = styled.div`
-  display: flex;
-  align-items: center;
-  min-width: 200px;
-  width: 100%;
-  height: 65px;
-  padding: 20px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-  background-color: white;
-  border-radius: 10px;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.07);
 `;
