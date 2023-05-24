@@ -1,23 +1,25 @@
 import styled from "styled-components";
-
-import React, { useEffect, useState } from "react";
-
-import MainPageHeader from "@/components/MainPageHeader";
+import React from "react";
+import Header from "@/components/Main/Header";
+import Carousel from "@/components/Main/Carousel";
 
 export default function Home() {
   return (
     <Container>
       <Wrapper>
-        <MainPageHeader />
-        <SectionHeader>
-          <Header>진행중이에요</Header>
-          <ViewMore>View More</ViewMore>
-        </SectionHeader>
-        <ContentsBox>1</ContentsBox>
-        <SectionHeader>
-          <Header>끝났어요</Header>
-          <ViewMore>View More</ViewMore>
-        </SectionHeader>
+        <Padding>
+          <Header />
+          <Hello>안녕하세요, 황준서님!</Hello>
+          <MenuHeader>카테고리</MenuHeader>
+        </Padding>
+        <Carousel />
+        <Padding>
+          <MenuHeader>오늘 할 일</MenuHeader>
+          <Content>1</Content>
+          <Content>2</Content>
+          <Content>2</Content>
+          <Content>2</Content>
+        </Padding>
       </Wrapper>
     </Container>
   );
@@ -37,35 +39,39 @@ const Wrapper = styled.div`
   height: 100%;
   max-width: 840px;
   color: #404245;
-  padding: 30px 25px;
-  padding-top: 40px;
-  background-color: #f9fafc;
+
+  background-color: #fafaff;
 `;
 
-const SectionHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
+const Padding = styled.div`
+  padding: 20px 20px 0px 20px;
+  padding-top: 20px;
+`;
+
+const Hello = styled.div`
+  color: #2c2d49;
+  font-weight: 800;
+  font-size: 30px;
+  margin-bottom: 50px;
+`;
+
+const MenuHeader = styled.p`
+  color: #c5c5cd;
+  font-size: 16px;
+  font-weight: 600;
   margin-bottom: 20px;
 `;
 
-const Header = styled.p`
-  font-size: 20px;
-  font-weight: 700;
-  color: #404245;
-`;
-
-const ViewMore = styled.p`
+const Content = styled.div`
   display: flex;
-  align-items: flex-end;
-  font-size: 12px;
-  color: rgba(52, 122, 240, 0.8);
-  font-weight: 400;
-`;
-
-const ContentsBox = styled.div`
-  border-radius: 20px;
-  background-color: white;
-  height: 300px;
+  align-items: center;
+  min-width: 200px;
+  width: 100%;
+  height: 65px;
   padding: 20px;
-  margin-bottom: 20px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.07);
 `;
