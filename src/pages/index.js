@@ -1,22 +1,32 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import Header from "@/components/Header";
 import Carousel from "@/components/Main/Carousel";
 import DoneList from "@/components/Main/DoneList";
+import Status from "@/components/Main/Status";
+import Menu from "@/components/Main/Menu";
+import { motion } from "framer-motion";
 
 export default function Home() {
+  const [menuSelect, setMenuSelect] = useState("donelist");
   return (
     <Container>
       <Wrapper>
         <Padding>
           <Header />
-          <Hello>안녕하세요, 황준서님!</Hello>
-          <MenuHeader>카테고리</MenuHeader>
+          <Hello
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            안녕하세요, 황준서님!
+          </Hello>
+          <HeaderText>약 기록</HeaderText>
         </Padding>
         <Carousel />
         <Padding>
-          <MenuHeader>오늘 한 일</MenuHeader>
-          <DoneList />
+          <Menu menuSelect={menuSelect} setMenuSelect={setMenuSelect} />
+          {menuSelect === "donelist" ? <DoneList /> : <Status />}
         </Padding>
       </Wrapper>
     </Container>
@@ -30,7 +40,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 50px;
+  padding-bottom: 70px;
 `;
 
 const Wrapper = styled.div`
@@ -43,18 +53,19 @@ const Wrapper = styled.div`
 `;
 
 const Padding = styled.div`
+  max-width: 840px;
   padding: 20px 20px 0px 20px;
   padding-top: 20px;
 `;
 
-const Hello = styled.div`
+const Hello = styled(motion.div)`
   color: #2c2d49;
   font-weight: 800;
   font-size: 30px;
   margin-bottom: 50px;
 `;
 
-const MenuHeader = styled.p`
+const HeaderText = styled.p`
   color: #c5c5cd;
   font-size: 17px;
   font-weight: 700;

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import Image from "next/image";
+
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 export default function Carousel() {
   const [pillArr, setPillArr] = useState(["아침약", "취침약", "영양제"]);
@@ -20,6 +22,7 @@ export default function Carousel() {
           onClick={() => {
             handleCardClick(idx);
           }}
+          whileTap={{ scale: 0.95 }}
         >
           {pillTFArr[idx] === true && (
             <Image
@@ -58,7 +61,7 @@ const Conatiner = styled.div`
     }
   }
 `;
-const Card = styled.div`
+const Card = styled(motion.div)`
   position: relative;
   min-width: 200px;
   width: 200px;

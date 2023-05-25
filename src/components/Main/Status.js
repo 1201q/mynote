@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import styled from "styled-components";
 
-export default function DoneList() {
+export default function Status() {
   return (
     <Container
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
+      initial={{ opacity: 0, x: -10 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.15 }}
     >
       <Card whileTap={{ scale: 0.95 }}>
         <Image
@@ -16,7 +16,7 @@ export default function DoneList() {
           width={40}
           height={40}
         />
-        <CardText>커피를 마셨어요</CardText>
+        <CardText>상태</CardText>
       </Card>
       <Card whileTap={{ scale: 0.95 }}>
         <Image
