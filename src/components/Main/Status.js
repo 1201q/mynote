@@ -11,48 +11,39 @@ export default function Status() {
     >
       <Card whileTap={{ scale: 0.95 }}>
         <Image
-          src={require("../../assets/coffee-cup.png")}
+          src={require("../../assets/brainfog.png")}
           alt="coffee"
           width={40}
           height={40}
         />
-        <CardText>상태</CardText>
+        <CardText>브레인포그</CardText>
       </Card>
       <Card whileTap={{ scale: 0.95 }}>
         <Image
-          src={require("../../assets/push-up.png")}
-          alt="pushup"
-          width={40}
-          height={40}
-        />
-        <CardText>푸쉬업을 다 했어요</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/sleep.png")}
-          alt="sleep"
-          width={40}
-          height={40}
-        />
-        <CardText>낮잠을 잤어요</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/runner.png")}
+          src={require("../../assets/zzzz.png")}
           alt="runner"
           width={40}
           height={40}
         />
-        <CardText>달리기를 했어요</CardText>
+        <CardText>잠</CardText>
       </Card>
       <Card whileTap={{ scale: 0.95 }}>
         <Image
-          src={require("../../assets/heart.png")}
-          alt="heart"
+          src={require("../../assets/depress.png")}
+          alt="pushup"
           width={40}
           height={40}
         />
-        <CardText>행동을 했어요</CardText>
+        <CardText>우울</CardText>
+      </Card>
+      <Card whileTap={{ scale: 0.95 }}>
+        <Image
+          src={require("../../assets/eye.png")}
+          alt="sleep"
+          width={40}
+          height={40}
+        />
+        <CardText>시야</CardText>
       </Card>
     </Container>
   );
@@ -60,11 +51,12 @@ export default function Status() {
 
 const Container = styled(motion.div)`
   width: 100%;
+  height: 100%;
   display: grid;
   gap: 15px;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   @media screen and (max-width: 700px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
 
@@ -81,7 +73,7 @@ const Card = styled(motion.div)`
   background-color: white;
 
   @media screen and (max-width: 700px) {
-    height: 130px;
+    height: 100px;
     flex-direction: column;
     padding: 5px;
   }

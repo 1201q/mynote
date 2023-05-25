@@ -18,7 +18,7 @@ export default function Home() {
     }
   }, [isSidebarOpen]);
   return (
-    <Container styledpaddingbottom={!isSidebarOpen && "30px"}>
+    <Container styledpaddingbottom={!isSidebarOpen && "100px"}>
       {isSidebarOpen && (
         <SidebarWrapper>
           <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
