@@ -46,7 +46,7 @@ const Btn = styled.div`
 
 const UnderBar = styled.div`
   background-color: #2c2d49;
-  height: 1px;
+  height: 1.7px;
   width: 50%;
   transition: transform 0.3s ease;
   transform: translateX(${(props) => (props.select ? "100%" : "0")});

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import Image from "next/image";
 
-const Header = () => {
+const Header = ({ setIsSidebarOpen }) => {
   return (
     <Container>
-      <div>
+      <div onClick={() => setIsSidebarOpen(true)} style={{ cursor: "pointer" }}>
         <Image
           src={require("../assets/menu-burger.svg")}
           alt="menu-burger"
