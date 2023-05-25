@@ -16,8 +16,9 @@ export default function Sidebar({ setIsSidebarOpen }) {
           height={18}
         />
       </SidebarOffBtn>
+
       <MenuContainer>
-        <Header style={{ top: "0px" }}>메뉴</Header>
+        <HeaderText style={{ top: "0px" }}>메뉴</HeaderText>
         <Menu style={{ top: "80px" }}>
           <Image
             src={require("../assets/settings.svg")}
@@ -89,7 +90,7 @@ const Text = styled.p`
   color: #808eb4;
 `;
 
-const Header = styled.p`
+const HeaderText = styled.p`
   color: white;
   font-size: 30px;
   font-weight: 800;

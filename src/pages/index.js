@@ -29,6 +29,11 @@ export default function Home() {
           styledradius={isSidebarOpen ? "40px" : "0px"}
           styledpadding={isSidebarOpen ? "20px" : "0px"}
           animate={isSidebarOpen ? { scale: 0.8, x: 260 } : { scale: 1, x: 0 }}
+          onClick={() => {
+            if (isSidebarOpen) {
+              setIsSidebarOpen(false);
+            }
+          }}
         >
           <Padding>
             <Header setIsSidebarOpen={setIsSidebarOpen} />
