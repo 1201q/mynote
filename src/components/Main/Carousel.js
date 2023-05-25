@@ -47,6 +47,7 @@ const Conatiner = styled.div`
   display: flex;
   width: 100%;
   overflow-x: scroll;
+
   padding-left: 20px;
   padding-right: 10px;
   padding-bottom: 20px;
