@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 export async function getServerSideProps() {
@@ -13,7 +13,7 @@ export async function getServerSideProps() {
   return { props: { data } };
 }
 
-export default function testpage({ data }) {
+export default function Testpage({ data }) {
   const newurl =
     process.env.NODE_ENV === "production"
       ? "https://mynote-gilt.vercel.app/api/newdata"

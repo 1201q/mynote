@@ -18,7 +18,7 @@ export default function Home() {
     }
   }, [isSidebarOpen]);
   return (
-    <Container styledpaddingbottom={!isSidebarOpen && "0px"}>
+    <Container>
       {isSidebarOpen && (
         <SidebarWrapper>
           <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
@@ -65,7 +65,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: ${(props) => props.styledpaddingbottom};
+  /* background-color: #faffff; */
 `;
 const Wrapper = styled.div`
   width: 100%;
