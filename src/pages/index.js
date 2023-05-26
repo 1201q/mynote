@@ -7,6 +7,7 @@ import Status from "@/components/Main/Status";
 import Menu from "@/components/Main/Menu";
 import { motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
+import Head from "next/head";
 
 export default function Home() {
   const [menuSelect, setMenuSelect] = useState("donelist");
@@ -19,10 +20,21 @@ export default function Home() {
   }, [isSidebarOpen]);
   return (
     <Container>
-      {isSidebarOpen && (
-        <SidebarWrapper>
-          <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
-        </SidebarWrapper>
+      {isSidebarOpen ? (
+        <>
+          <Head>
+            <meta name="theme-color" content="#131F53" />
+          </Head>
+          <SidebarWrapper>
+            <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
+          </SidebarWrapper>
+        </>
+      ) : (
+        <>
+          <Head>
+            <meta name="theme-color" content="#fafaff" />
+          </Head>
+        </>
       )}
       <Wrapper>
         <Main
