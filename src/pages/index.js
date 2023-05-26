@@ -18,7 +18,7 @@ export default function Home() {
     }
   }, [isSidebarOpen]);
   return (
-    <Container styledpaddingbottom={!isSidebarOpen && "100px"}>
+    <Container styledpaddingbottom={!isSidebarOpen && "0px"}>
       {isSidebarOpen && (
         <SidebarWrapper>
           <Sidebar setIsSidebarOpen={setIsSidebarOpen} />
@@ -69,7 +69,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 100%;
   max-width: 840px;
   z-index: 1;
   overflow: hidden;
@@ -93,8 +93,9 @@ const Main = styled(motion.div)`
   z-index: 200;
 `;
 const Padding = styled.div`
+  height: max-content;
   max-width: 840px;
-  padding: 20px 20px 0px 20px;
+  padding: 20px 20px 20px 20px;
   padding-top: 20px;
 `;
 const Hello = styled(motion.div)`
@@ -107,5 +108,4 @@ const HeaderText = styled.p`
   color: #c5c5cd;
   font-size: 17px;
   font-weight: 700;
-  margin-bottom: 18px;
 `;

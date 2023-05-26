@@ -45,6 +45,24 @@ export default function Status() {
         />
         <CardText>시야</CardText>
       </Card>
+      <Card whileTap={{ scale: 0.95 }}>
+        <Image
+          src={require("../../assets/eye.png")}
+          alt="sleep"
+          width={40}
+          height={40}
+        />
+        <CardText>시야</CardText>
+      </Card>
+      <Card whileTap={{ scale: 0.95 }}>
+        <Image
+          src={require("../../assets/eye.png")}
+          alt="sleep"
+          width={40}
+          height={40}
+        />
+        <CardText>시야</CardText>
+      </Card>
     </Container>
   );
 }
