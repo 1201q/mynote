@@ -85,7 +85,7 @@ const Menu = styled.div`
 `;
 
 const Text = styled.p`
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
   color: #808eb4;
 `;

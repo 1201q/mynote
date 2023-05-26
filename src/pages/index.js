@@ -29,6 +29,8 @@ export default function Home() {
           styledradius={isSidebarOpen ? "40px" : "0px"}
           styledpadding={isSidebarOpen ? "20px" : "0px"}
           animate={isSidebarOpen ? { scale: 0.8, x: 260 } : { scale: 1, x: 0 }}
+          styledheight={isSidebarOpen ? "80vh" : "max-content"}
+          styledoverflow={isSidebarOpen && "hidden"}
           onClick={() => {
             if (isSidebarOpen) {
               setIsSidebarOpen(false);
@@ -65,7 +67,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* background-color: #faffff; */
+  background-color: #fafaff;
 `;
 const Wrapper = styled.div`
   width: 100%;
@@ -77,13 +79,13 @@ const Wrapper = styled.div`
 const SidebarWrapper = styled.div`
   position: absolute;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   max-width: 840px;
   background-color: #131f53;
 `;
 const Main = styled(motion.div)`
   width: 100%;
-  height: max-content;
+  height: ${(props) => props.styledheight};
   min-height: 100vh;
   max-width: 840px;
   color: #404245;
@@ -91,6 +93,7 @@ const Main = styled(motion.div)`
   border-radius: ${(props) => props.styledradius};
   padding: ${(props) => props.styledpadding};
   z-index: 200;
+  overflow-y: ${(props) => props.styledoverflow};
 `;
 const Padding = styled.div`
   height: max-content;
