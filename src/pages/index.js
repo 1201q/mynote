@@ -8,6 +8,7 @@ import Menu from "@/components/Main/Menu";
 import { motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
+import BottomBtn from "@/components/BottomBtn";
 
 export default function Home() {
   const [menuSelect, setMenuSelect] = useState("donelist");
@@ -49,7 +50,7 @@ export default function Home() {
             }
           }}
         >
-          <Padding>
+          <Padding styledpaddingbottom={"20px"}>
             <Header setIsSidebarOpen={setIsSidebarOpen} />
             <Hello
               initial={{ opacity: 0, y: 20 }}
@@ -61,10 +62,11 @@ export default function Home() {
             <HeaderText>약 기록</HeaderText>
           </Padding>
           <Carousel />
-          <Padding>
+          <Padding styledpaddingbottom={"100px"}>
             <Menu menuSelect={menuSelect} setMenuSelect={setMenuSelect} />
             {menuSelect === "donelist" ? <DoneList /> : <Status />}
           </Padding>
+          {!isSidebarOpen && <BottomBtn menuSelect={menuSelect} />}
         </Main>
       </Wrapper>
     </Container>
@@ -95,6 +97,7 @@ const SidebarWrapper = styled.div`
   max-width: 840px;
   background-color: #131f53;
 `;
+
 const Main = styled(motion.div)`
   width: 100%;
   height: ${(props) => props.styledheight};
@@ -112,6 +115,7 @@ const Padding = styled.div`
   max-width: 840px;
   padding: 20px 20px 20px 20px;
   padding-top: 20px;
+  padding-bottom: ${(props) => props.styledpaddingbottom};
 `;
 const Hello = styled(motion.div)`
   color: #2c2d49;

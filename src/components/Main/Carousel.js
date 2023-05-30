@@ -5,8 +5,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Carousel() {
-  const [pillArr, setPillArr] = useState(["아침약", "취침약", "영양제"]);
-  const [pillTFArr, setPillTFArr] = useState([false, false, false]);
+  const [pillArr, setPillArr] = useState([
+    "아침약",
+    "취침약",
+    "비타민D",
+    "철분마그네슘아연",
+  ]);
+  const [pillTFArr, setPillTFArr] = useState([false, false, false, false]);
 
   const handleCardClick = (idx) => {
     const updatedPillArr = [...pillTFArr];
