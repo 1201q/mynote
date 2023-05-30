@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import BottomBtn from "@/components/BottomBtn";
+import Popup from "@/components/Popup";
 
 export default function Home() {
   const [menuSelect, setMenuSelect] = useState("donelist");
@@ -97,7 +98,6 @@ const SidebarWrapper = styled.div`
   max-width: 840px;
   background-color: #131f53;
 `;
-
 const Main = styled(motion.div)`
   width: 100%;
   height: ${(props) => props.styledheight};
@@ -107,8 +107,8 @@ const Main = styled(motion.div)`
   background-color: #fafaff;
   border-radius: ${(props) => props.styledradius};
   padding: ${(props) => props.styledpadding};
-  z-index: 200;
   overflow-y: ${(props) => props.styledoverflow};
+  z-index: 200;
 `;
 const Padding = styled.div`
   height: max-content;
