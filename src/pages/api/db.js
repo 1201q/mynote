@@ -1,4 +1,4 @@
-//완료
+// db 연결
 
 export {};
 const mysql = require("mysql2");

@@ -9,65 +9,72 @@ export default function Status() {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.15 }}
     >
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/brainfog.png")}
-          alt="coffee"
-          width={40}
-          height={40}
-        />
-        <CardText>브레인포그</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/zzzz.png")}
-          alt="runner"
-          width={40}
-          height={40}
-        />
-        <CardText>잠</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/depress.png")}
-          alt="pushup"
-          width={40}
-          height={40}
-        />
-        <CardText>우울</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/eye.png")}
-          alt="sleep"
-          width={40}
-          height={40}
-        />
-        <CardText>시야</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/eye.png")}
-          alt="sleep"
-          width={40}
-          height={40}
-        />
-        <CardText>시야</CardText>
-      </Card>
-      <Card whileTap={{ scale: 0.95 }}>
-        <Image
-          src={require("../../assets/eye.png")}
-          alt="sleep"
-          width={40}
-          height={40}
-        />
-        <CardText>시야</CardText>
-      </Card>
+      <TextArea placeholder="상태를 입력해보세요."></TextArea>
+      <GridWrapper>
+        <Card whileTap={{ scale: 0.95 }}>
+          <Image
+            src={require("../../assets/brainfog.png")}
+            alt="coffee"
+            width={40}
+            height={40}
+          />
+          <CardText>브레인포그</CardText>
+        </Card>
+        <Card whileTap={{ scale: 0.95 }}>
+          <Image
+            src={require("../../assets/zzzz.png")}
+            alt="runner"
+            width={40}
+            height={40}
+          />
+          <CardText>잠</CardText>
+        </Card>
+        <Card whileTap={{ scale: 0.95 }}>
+          <Image
+            src={require("../../assets/depress.png")}
+            alt="pushup"
+            width={40}
+            height={40}
+          />
+          <CardText>우울</CardText>
+        </Card>
+        <Card whileTap={{ scale: 0.95 }}>
+          <Image
+            src={require("../../assets/eye.png")}
+            alt="sleep"
+            width={40}
+            height={40}
+          />
+          <CardText>시야</CardText>
+        </Card>
+        <Card whileTap={{ scale: 0.95 }}>
+          <Image
+            src={require("../../assets/eye.png")}
+            alt="sleep"
+            width={40}
+            height={40}
+          />
+          <CardText>시야</CardText>
+        </Card>
+        <Card whileTap={{ scale: 0.95 }}>
+          <Image
+            src={require("../../assets/eye.png")}
+            alt="sleep"
+            width={40}
+            height={40}
+          />
+          <CardText>시야</CardText>
+        </Card>
+      </GridWrapper>
     </Container>
   );
 }
 
 const Container = styled(motion.div)`
+  width: 100%;
+`;
+
+const GridWrapper = styled.div`
   width: 100%;
   height: 100%;
   display: grid;
@@ -75,6 +82,30 @@ const Container = styled(motion.div)`
   grid-template-columns: repeat(2, 1fr);
   @media screen and (max-width: 700px) {
     grid-template-columns: repeat(1, 1fr);
+  }
+`;
+const TextArea = styled.textarea`
+  margin-bottom: 20px;
+  width: 100%;
+  height: auto;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  padding: 20px;
+  background-color: #ecf1f8;
+  color: #404245;
+  font-size: 20px;
+  font-weight: 600;
+  overflow-y: auto;
+  resize: vertical;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  ::placeholder {
+    color: #a5adb9;
+    font-weight: 500;
   }
 `;
 

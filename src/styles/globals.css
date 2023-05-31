@@ -100,7 +100,8 @@ a {
 }
 
 button,
-textarea {
+textarea,
+input {
   font-family: Pretendard;
 }
 

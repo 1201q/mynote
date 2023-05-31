@@ -83,8 +83,7 @@ const TextArea = styled.textarea`
   border-radius: 10px;
   outline: none;
   padding: 20px;
-  background-color: #f1f3f6;
-  /* box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.13); */
+  background-color: #ecf1f8;
   color: #404245;
   font-size: 20px;
   font-weight: 600;
@@ -92,7 +91,7 @@ const TextArea = styled.textarea`
   resize: vertical;
 
   ::-webkit-scrollbar {
-    width: 0px; /* 스크롤 바의 너비를 조절합니다 */
+    width: 0px;
   }
 
   ::placeholder {

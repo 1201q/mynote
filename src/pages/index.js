@@ -9,7 +9,6 @@ import { motion } from "framer-motion";
 import Sidebar from "@/components/Sidebar";
 import Head from "next/head";
 import BottomBtn from "@/components/BottomBtn";
-import Popup from "@/components/Popup";
 
 export default function Home() {
   const [menuSelect, setMenuSelect] = useState("donelist");
@@ -20,6 +19,7 @@ export default function Home() {
       window.scrollTo(0, 0);
     }
   }, [isSidebarOpen]);
+
   return (
     <Container>
       {isSidebarOpen ? (
@@ -44,7 +44,7 @@ export default function Home() {
           styledpadding={isSidebarOpen ? "20px" : "0px"}
           animate={isSidebarOpen ? { scale: 0.8, x: 260 } : { scale: 1, x: 0 }}
           styledheight={isSidebarOpen ? "80vh" : "max-content"}
-          styledoverflow={isSidebarOpen && "hidden"}
+          styledoverflow={isSidebarOpen ? "hidden" : "auto"}
           onClick={() => {
             if (isSidebarOpen) {
               setIsSidebarOpen(false);
