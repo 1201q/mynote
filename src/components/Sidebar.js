@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Sidebar({ setIsSidebarOpen }) {
   return (
@@ -19,15 +20,17 @@ export default function Sidebar({ setIsSidebarOpen }) {
 
       <MenuContainer>
         <HeaderText style={{ top: "0px" }}>메뉴</HeaderText>
-        <Menu style={{ top: "80px" }}>
-          <Image
-            src={require("../assets/settings.svg")}
-            alt="settings"
-            width={23}
-            height={23}
-          />
-          <Text>설정</Text>
-        </Menu>
+        <Link href="/login">
+          <Menu style={{ top: "80px" }}>
+            <Image
+              src={require("../assets/settings.svg")}
+              alt="settings"
+              width={23}
+              height={23}
+            />
+            <Text>설정</Text>
+          </Menu>
+        </Link>
         <Menu style={{ top: "130px" }}>
           <Image
             src={require("../assets/calendar.svg")}
