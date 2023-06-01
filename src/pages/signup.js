@@ -1,13 +1,16 @@
 import axios from "axios";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
 const Login = () => {
   const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [displayName, setDisplayName] = useState("");
+
   const [errorText, setErrorText] = useState(null);
 
   useEffect(() => {
@@ -22,43 +25,61 @@ const Login = () => {
     const { name, value } = e.target;
     if (name === "id") {
       setId(value);
+    } else if (name === "email") {
+      setEmail(value);
     } else if (name === "password") {
       setPassword(value);
+    } else if (name === "displayName") {
+      setDisplayName(value);
+    } else if (name === "pwConfirm") {
+      setPasswordConfirm(value);
     }
   };
 
-  const login = async () => {
+  const signup = async () => {
     const URL =
       process.env.NODE_ENV === "production"
-        ? "https://mynote-gilt.vercel.app/api/login"
-        : "http://localhost:3000/api/login";
-
+        ? "https://mynote-gilt.vercel.app/api/signup"
+        : "http://localhost:3000/api/signup";
     axios
       .get(URL, {
         params: {
           id: id,
           pw: password,
+          email: email,
+          name: displayName,
         },
       })
       .then((response) => {
-        // 로그인 완료
-        console.log(response.data);
+        // 회원가입 완료
+        //로직
       })
       .catch((error) => {
         // 에러
-        console.log(error);
-        setErrorText(error.response.data.message);
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
+          setErrorText(error.response.data.error);
+        } else {
+          setErrorText(error.message);
+        }
       });
   };
 
   return (
     <Container>
-      <Header>로그인</Header>
+      <Header>회원가입</Header>
       <Form
         onSubmit={(e) => {
           e.preventDefault();
 
-          login();
+          if (password === passwordConfirm) {
+            signup();
+          } else {
+            setErrorText("확인 비밀번호가 서로 동일해야해요.");
+          }
         }}
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -90,6 +111,68 @@ const Login = () => {
           placeholder="비밀번호를 입력하세요."
         />
 
+        {/* 비밀번호 재확인 */}
+        <InputHeader>
+          <InputHeaderText>비멀번호 재확인</InputHeaderText>
+          {password !== "" && passwordConfirm !== "" && (
+            <IsPWSame
+              styledcolor={password === passwordConfirm ? "#2BC48A" : "#F7595D"}
+            >
+              <Image
+                src={
+                  password === passwordConfirm
+                    ? require("../assets/green-exclamation.svg")
+                    : require("../assets/red-exclamation.svg")
+                }
+                alt="exclamation"
+                width={15}
+                height={15}
+                style={{
+                  marginTop: "1px",
+                  marginRight: "5px",
+                }}
+              />
+              {password === passwordConfirm
+                ? "비밀번호가 동일해요."
+                : "비밀번호가 틀려요."}
+            </IsPWSame>
+          )}
+        </InputHeader>
+        <Input
+          required
+          type="password"
+          value={passwordConfirm}
+          name="pwConfirm"
+          onChange={onChange}
+          placeholder="비밀번호를 다시 입력하세요."
+        />
+
+        {/* 이름 */}
+        <InputHeader>
+          <InputHeaderText>이름</InputHeaderText>
+        </InputHeader>
+        <Input
+          required
+          type="text"
+          value={displayName}
+          name="displayName"
+          onChange={onChange}
+          placeholder="나의 이름을 입력하세요."
+        />
+
+        {/* 이메일 */}
+        <InputHeader>
+          <InputHeaderText>이메일</InputHeaderText>
+        </InputHeader>
+        <Input
+          required
+          type="email"
+          value={email}
+          name="email"
+          onChange={onChange}
+          placeholder="이메일을 입력하세요."
+        />
+
         {/* 에러시 에러코드 출력 */}
         {errorText && (
           <Popup
@@ -102,12 +185,8 @@ const Login = () => {
 
         {/* submit 버튼 */}
         <SubmitBtnContainer>
-          <Input type="submit" value="로그인" whileTap={{ scale: 0.95 }} />
+          <Input type="submit" value="회원가입" whileTap={{ scale: 0.95 }} />
         </SubmitBtnContainer>
-
-        <Link href="/signup">
-          <Signup>회원가입</Signup>
-        </Link>
       </Form>
     </Container>
   );
@@ -142,8 +221,6 @@ const Form = styled(motion.form)`
   max-width: 840px;
   z-index: 1;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
   flex-direction: column;
 
   align-items: center;
@@ -206,6 +283,17 @@ const InputHeaderText = styled.p`
   font-weight: 700;
 `;
 
+const IsPWSame = styled.p`
+  display: flex;
+  width: 100%;
+  text-align: start;
+  margin-left: 20px;
+  margin-top: 1px;
+  color: ${(props) => props.styledcolor};
+  font-size: 15px;
+  font-weight: 700;
+`;
+
 const Popup = styled(motion.div)`
   position: fixed;
   bottom: 90px;
@@ -215,13 +303,6 @@ const Popup = styled(motion.div)`
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.05);
   padding: 10px 20px;
   border-radius: 10px;
-`;
-
-const Signup = styled.p`
-  font-size: 20px;
-  margin-top: 50px;
-  color: #c5c5cd;
-  cursor: pointer;
 `;
 
 export default Login;
