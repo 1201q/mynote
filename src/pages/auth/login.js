@@ -1,11 +1,13 @@
 import axios from "axios";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { signIn } from "next-auth/react";
 
 const Login = () => {
+  const router = useRouter();
   const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState(null);
@@ -59,8 +61,10 @@ const Login = () => {
       password,
       redirect: false,
     });
-    console.log(userid, password);
-    console.log(response);
+
+    if (response?.ok) {
+      router.push("/");
+    }
   };
 
   return (
