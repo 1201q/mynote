@@ -37,11 +37,8 @@ async function signup(req, res) {
                     if (err) {
                       res.status(500).json({ error: "Internal Server Error" });
                     } else {
+                      //세션
                       res.status(200).json({ connection: "ok" });
-
-                      // 세션
-                      req.session.set("user", { id, pw });
-                      await req.session.save();
                     }
                   }
                 );
@@ -53,11 +50,3 @@ async function signup(req, res) {
     }
   );
 }
-
-export default withIronSession(signup, {
-  password: "pw",
-  cookieName: "user-cookie",
-  cookieOptions: {
-    secure: process.env.NODE_ENV === "production",
-  },
-});

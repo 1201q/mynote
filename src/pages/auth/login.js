@@ -1,12 +1,12 @@
 import axios from "axios";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { signIn } from "next-auth/react";
 
 const Login = () => {
-  const [id, setId] = useState("");
+  const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState(null);
 
@@ -20,46 +20,54 @@ const Login = () => {
 
   const onChange = (e) => {
     const { name, value } = e.target;
-    if (name === "id") {
-      setId(value);
+    if (name === "userid") {
+      setUserid(value);
     } else if (name === "password") {
       setPassword(value);
     }
   };
 
-  const login = async () => {
-    const URL =
-      process.env.NODE_ENV === "production"
-        ? "https://mynote-gilt.vercel.app/api/login"
-        : "http://localhost:3000/api/login";
+  // const login = async () => {
+  //   const URL =
+  //     process.env.NODE_ENV === "production"
+  //       ? "https://mynote-gilt.vercel.app/api/login"
+  //       : "http://localhost:3000/api/login";
 
-    axios
-      .get(URL, {
-        params: {
-          id: id,
-          pw: password,
-        },
-      })
-      .then((response) => {
-        // 로그인 완료
-        console.log(response.data);
-      })
-      .catch((error) => {
-        // 에러
-        console.log(error);
-        setErrorText(error.response.data.message);
-      });
+  //   axios
+  //     .get(URL, {
+  //       params: {
+  //         id: id,
+  //         pw: password,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       // 로그인 완료
+  //       console.log(response.data);
+  //     })
+  //     .catch((error) => {
+  //       // 에러
+  //       console.log(error);
+  //       setErrorText(error.response.data.message);
+  //     });
+  // };
+
+  const login = async (e) => {
+    e.preventDefault();
+
+    const response = await signIn("mynote", {
+      userid,
+      password,
+      redirect: false,
+    });
+    console.log(userid, password);
+    console.log(response);
   };
 
   return (
     <Container>
       <Header>로그인</Header>
       <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-
-          login();
-        }}
+        onSubmit={(e) => login(e)}
         initial={{ y: 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.46 }}
@@ -71,8 +79,8 @@ const Login = () => {
         <Input
           required
           type="text"
-          value={id}
-          name="id"
+          value={userid}
+          name="userid"
           onChange={onChange}
           placeholder="아이디를 입력하세요."
         />

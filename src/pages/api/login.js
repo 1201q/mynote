@@ -10,8 +10,8 @@ export default function login(req, res) {
         res.status(500).json({ error: "Internal Server Error" });
       } else {
         if (result.length > 0) {
-          const { uuid } = result[0];
-          res.status(200).json({ connection: "ok", uuid });
+          const { uuid, name } = result[0];
+          res.status(200).json({ connection: "ok", uuid, name });
         } else {
           res.status(404).json({ message: "다시 시도해주세요." });
         }
