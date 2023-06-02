@@ -20,7 +20,7 @@ export default function Sidebar({ setIsSidebarOpen }) {
 
       <MenuContainer>
         <HeaderText style={{ top: "0px" }}>메뉴</HeaderText>
-        <Link href="/login">
+        <Link href="/">
           <Menu style={{ top: "80px" }}>
             <Image
               src={require("../assets/settings.svg")}

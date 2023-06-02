@@ -1,7 +1,6 @@
-import db from "./db";
-import { withIronSession } from "next-iron-session";
+import db from "./newdb";
 
-async function signup(req, res) {
+export default async function signup(req, res) {
   const { id, pw, email, name } = req.query;
 
   // 아이디 중복 카운트

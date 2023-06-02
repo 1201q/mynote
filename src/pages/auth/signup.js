@@ -1,10 +1,12 @@
 import axios from "axios";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 
 const Login = () => {
+  const router = useRouter();
   const [id, setId] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -51,8 +53,7 @@ const Login = () => {
         },
       })
       .then((response) => {
-        // 회원가입 완료
-        //로직
+        router.replace("/auth/login");
       })
       .catch((error) => {
         // 에러
@@ -121,8 +122,8 @@ const Login = () => {
               <Image
                 src={
                   password === passwordConfirm
-                    ? require("../assets/green-exclamation.svg")
-                    : require("../assets/red-exclamation.svg")
+                    ? require("../../assets/green-exclamation.svg")
+                    : require("../../assets/red-exclamation.svg")
                 }
                 alt="exclamation"
                 width={15}

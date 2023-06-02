@@ -1,35 +1,35 @@
 import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signIn, signOut, getSession } from "next-auth/react";
 import axios from "axios";
 
-export default function Home() {
+export default function Home({ user }) {
+  const router = useRouter();
   const { data: session, status } = useSession();
-  console.log(session, status);
-  if (session) {
+  if (user) {
     return (
       <>
-        Signed in as {session.user.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
+        <button onClick={() => router.push("/main")}>메인</button>
+        <button onClick={() => signOut()}>로그아웃</button>
+        {user.name} {user.email}
+      </>
+    );
+  } else {
+    return (
+      <>
+        <button onClick={() => signIn()}>로그인</button>
       </>
     );
   }
-  return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
-  );
 }
 
-const Container = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #fafaff;
-`;
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+
+  return {
+    props: {
+      user: session?.user || null,
+    },
+  };
+}

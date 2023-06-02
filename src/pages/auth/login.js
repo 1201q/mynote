@@ -62,6 +62,10 @@ const Login = () => {
       redirect: false,
     });
 
+    if (!response.ok) {
+      setErrorText("로그인 할 수 없어요. 다시 시도해주세요.");
+    }
+
     if (response?.ok) {
       router.push("/");
     }
@@ -117,7 +121,7 @@ const Login = () => {
           <Input type="submit" value="로그인" whileTap={{ scale: 0.95 }} />
         </SubmitBtnContainer>
 
-        <Link href="/signup">
+        <Link href="/auth/signup">
           <Signup>회원가입</Signup>
         </Link>
       </Form>
