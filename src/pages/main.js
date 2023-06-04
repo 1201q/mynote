@@ -37,14 +37,6 @@ export default function Home({ user }) {
   const [menuSelect, setMenuSelect] = useState("donelist");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     router.replace("/main");
-  //   } else {
-  //     router.replace("/auth/login");
-  //   }
-  // }, []);
-
   useEffect(() => {
     if (isSidebarOpen) {
       window.scrollTo(0, 0);
@@ -90,7 +82,7 @@ export default function Home({ user }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              안녕하세요, {user.name}님!
+              안녕하세요, {user ? user.name : "사용자"}님!
             </Hello>
             <HeaderText>약 기록</HeaderText>
           </Padding>

@@ -32,14 +32,6 @@ const Login = ({ user }) => {
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState(null);
 
-  // useEffect(() => {
-  //   if (user) {
-  //     router.replace("/main");
-  //   } else {
-  //     router.replace("/auth/login");
-  //   }
-  // }, [user]);
-
   useEffect(() => {
     if (errorText) {
       setTimeout(() => {
