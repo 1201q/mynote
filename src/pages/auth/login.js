@@ -9,6 +9,15 @@ import { getSession, signIn, useSession } from "next-auth/react";
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
 
+  if (session) {
+    return {
+      redirect: {
+        destination: "/main",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       user: session?.user || null,
@@ -23,13 +32,13 @@ const Login = ({ user }) => {
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState(null);
 
-  useEffect(() => {
-    if (user) {
-      router.replace("/main");
-    } else {
-      router.replace("/auth/login");
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     router.replace("/main");
+  //   } else {
+  //     router.replace("/auth/login");
+  //   }
+  // }, [user]);
 
   useEffect(() => {
     if (errorText) {
@@ -62,7 +71,7 @@ const Login = ({ user }) => {
     }
 
     if (response?.ok) {
-      router.push("/main");
+      router.replace("/main");
     }
   };
 

@@ -28,6 +28,7 @@ export default function Sidebar({ setIsSidebarOpen }) {
           style={{ top: "80px" }}
           onClick={() => {
             signOut();
+            router.replace("/");
           }}
         >
           <Image

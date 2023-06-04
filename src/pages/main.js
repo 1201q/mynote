@@ -16,6 +16,15 @@ import { useSession, getSession, signOut } from "next-auth/react";
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
 
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+
   return {
     props: {
       user: session?.user || null,
@@ -28,13 +37,13 @@ export default function Home({ user }) {
   const [menuSelect, setMenuSelect] = useState("donelist");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    if (user) {
-      router.replace("/main");
-    } else {
-      router.replace("/auth/login");
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (user) {
+  //     router.replace("/main");
+  //   } else {
+  //     router.replace("/auth/login");
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (isSidebarOpen) {

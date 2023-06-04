@@ -4,16 +4,6 @@ import { useRouter } from "next/router";
 import { useSession, signIn, signOut, getSession } from "next-auth/react";
 
 export default function Home({ user }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    if (user) {
-      router.replace("/main");
-    } else {
-      router.replace("/auth/login");
-    }
-  }, [user]);
-
   return <Container></Container>;
 }
 
@@ -23,6 +13,24 @@ const Container = styled.div`
 `;
 export async function getServerSideProps(ctx) {
   const session = await getSession(ctx);
+
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth/login",
+        permanent: false,
+      },
+    };
+  }
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/main",
+        permanent: false,
+      },
+    };
+  }
 
   return {
     props: {
