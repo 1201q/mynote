@@ -23,11 +23,12 @@ export default NextAuth({
 
         try {
           const [rows] = await db.query(QUERY, [userid, password]);
+          // const additionalData = await getAdditionalDataFromAPI(rows[0].uuid);
           if (rows.length > 0) {
             return {
-              id: rows[0].uuid,
               name: rows[0].name,
               email: rows[0].email,
+              uuid: rows[0].uuid,
             };
           } else {
             return null;
@@ -38,7 +39,21 @@ export default NextAuth({
       },
     }),
   ],
+
   pages: {
     signIn: "/auth/login",
+  },
+  callbacks: {
+    async jwt({ token, user }) {
+      user && (token.user = user);
+      return Promise.resolve(token);
+    },
+    async session({ session, token }) {
+      session.user = token.user;
+      if (session.user != null && token.hasAcceptedTerms != null) {
+        session.user.hasAcceptedTerms = token?.hasAcceptedTerms;
+      }
+      return Promise.resolve(session);
+    },
   },
 });

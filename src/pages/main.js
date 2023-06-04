@@ -90,7 +90,7 @@ export default function Home({ user }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              안녕하세요, 황준서님!
+              안녕하세요, {user.name}님!
             </Hello>
             <HeaderText>약 기록</HeaderText>
           </Padding>
