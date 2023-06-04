@@ -23,12 +23,25 @@ export default function Sidebar({ setIsSidebarOpen }) {
 
       <MenuContainer>
         <HeaderText style={{ top: "0px" }}>메뉴</HeaderText>
-
         <Menu
-          style={{ top: "80px" }}
+          style={{ top: "70px" }}
           onClick={() => {
             signOut();
             router.replace("/");
+          }}
+        >
+          <Image
+            src={require("../assets/unlock.svg")}
+            alt="unlock"
+            width={25}
+            height={25}
+          />
+          <Text>로그아웃</Text>
+        </Menu>
+        <Menu
+          style={{ top: "120px" }}
+          onClick={() => {
+            router.push("/setting");
           }}
         >
           <Image
@@ -39,8 +52,7 @@ export default function Sidebar({ setIsSidebarOpen }) {
           />
           <Text>설정</Text>
         </Menu>
-
-        <Menu style={{ top: "130px" }}>
+        <Menu style={{ top: "170px" }}>
           <Image
             src={require("../assets/calendar.svg")}
             alt="calendar"
@@ -60,7 +72,7 @@ const Container = styled.div`
 
 const MenuContainer = styled.div`
   position: absolute;
-  top: 450px;
+  top: 420px;
 `;
 
 const SidebarOffBtn = styled.button`

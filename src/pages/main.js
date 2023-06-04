@@ -41,7 +41,6 @@ export default function Home({ user }) {
     if (isSidebarOpen) {
       window.scrollTo(0, 0);
     }
-    console.log(user);
   }, [isSidebarOpen]);
 
   return (
@@ -82,8 +81,9 @@ export default function Home({ user }) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4 }}
             >
-              안녕하세요, {user ? user.name : "사용자"}님!
+              안녕하세요, {user ? user.name : "사용자"}님! ({user && user.uuid})
             </Hello>
+
             <HeaderText>약 기록</HeaderText>
           </Padding>
           <Carousel />
