@@ -30,9 +30,9 @@ export default function Home({ user }) {
 
   useEffect(() => {
     if (user) {
-      router.push("/main");
+      router.replace("/main");
     } else {
-      router.push("/auth/login");
+      router.replace("/auth/login");
     }
   }, []);
 
