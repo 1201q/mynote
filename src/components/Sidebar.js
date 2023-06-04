@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
+import { useRouter } from "next/router";
 
 export default function Sidebar({ setIsSidebarOpen }) {
+  const router = useRouter();
   return (
     <Container>
       <SidebarOffBtn
@@ -20,17 +23,22 @@ export default function Sidebar({ setIsSidebarOpen }) {
 
       <MenuContainer>
         <HeaderText style={{ top: "0px" }}>메뉴</HeaderText>
-        <Link href="/">
-          <Menu style={{ top: "80px" }}>
-            <Image
-              src={require("../assets/settings.svg")}
-              alt="settings"
-              width={23}
-              height={23}
-            />
-            <Text>설정</Text>
-          </Menu>
-        </Link>
+
+        <Menu
+          style={{ top: "80px" }}
+          onClick={() => {
+            signOut();
+          }}
+        >
+          <Image
+            src={require("../assets/settings.svg")}
+            alt="settings"
+            width={23}
+            height={23}
+          />
+          <Text>설정</Text>
+        </Menu>
+
         <Menu style={{ top: "130px" }}>
           <Image
             src={require("../assets/calendar.svg")}

@@ -11,15 +11,36 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import BottomBtn from "@/components/BottomBtn";
 import axios from "axios";
+import { useSession, getSession, signOut } from "next-auth/react";
 
-export default function Home() {
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+
+  return {
+    props: {
+      user: session?.user || null,
+    },
+  };
+}
+
+export default function Home({ user }) {
+  const router = useRouter();
   const [menuSelect, setMenuSelect] = useState("donelist");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      router.push("/main");
+    } else {
+      router.push("/auth/login");
+    }
+  }, []);
 
   useEffect(() => {
     if (isSidebarOpen) {
       window.scrollTo(0, 0);
     }
+    console.log(user);
   }, [isSidebarOpen]);
 
   return (

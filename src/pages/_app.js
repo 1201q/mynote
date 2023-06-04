@@ -8,11 +8,12 @@ export default function App({
 }) {
   return (
     <>
-      <Head>
-        <title>mynote | 나의노트</title>
-        <link rel="manifest" href="/manifest.json" />
-      </Head>
       <SessionProvider session={session}>
+        <Head>
+          <title>mynote | 나의노트</title>
+          <link rel="manifest" href="/manifest.json" />
+        </Head>
+
         <Component {...pageProps} />
       </SessionProvider>
     </>

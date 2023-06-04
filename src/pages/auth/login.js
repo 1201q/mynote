@@ -4,13 +4,32 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
-import { signIn } from "next-auth/react";
+import { getSession, signIn, useSession } from "next-auth/react";
 
-const Login = () => {
+export async function getServerSideProps(ctx) {
+  const session = await getSession(ctx);
+
+  return {
+    props: {
+      user: session?.user || null,
+    },
+  };
+}
+
+const Login = ({ user }) => {
   const router = useRouter();
+
   const [userid, setUserid] = useState("");
   const [password, setPassword] = useState("");
   const [errorText, setErrorText] = useState(null);
+
+  useEffect(() => {
+    if (user) {
+      router.push("/main");
+    } else {
+      router.push("/auth/login");
+    }
+  }, [user]);
 
   useEffect(() => {
     if (errorText) {
@@ -29,30 +48,6 @@ const Login = () => {
     }
   };
 
-  // const login = async () => {
-  //   const URL =
-  //     process.env.NODE_ENV === "production"
-  //       ? "https://mynote-gilt.vercel.app/api/login"
-  //       : "http://localhost:3000/api/login";
-
-  //   axios
-  //     .get(URL, {
-  //       params: {
-  //         id: id,
-  //         pw: password,
-  //       },
-  //     })
-  //     .then((response) => {
-  //       // 로그인 완료
-  //       console.log(response.data);
-  //     })
-  //     .catch((error) => {
-  //       // 에러
-  //       console.log(error);
-  //       setErrorText(error.response.data.message);
-  //     });
-  // };
-
   const login = async (e) => {
     e.preventDefault();
 
@@ -67,7 +62,7 @@ const Login = () => {
     }
 
     if (response?.ok) {
-      router.push("/");
+      router.push("/main");
     }
   };
 
