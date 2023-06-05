@@ -41,7 +41,7 @@ export default function Sidebar({ setIsSidebarOpen }) {
         <Menu
           style={{ top: "120px" }}
           onClick={() => {
-            router.push("/setting");
+            router.push("/settings");
           }}
         >
           <Image
