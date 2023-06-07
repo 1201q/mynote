@@ -3,31 +3,10 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useState } from "react";
 import { getSession } from "next-auth/react";
+import Link from "next/link";
 import axios from "axios";
 
-// export async function getServerSideProps(ctx) {
-//   const session = await getSession(ctx);
-//   const uuid = session?.user.uuid;
-
-//   // if (!session) {
-//   //   return {
-//   //     redirect: {
-//   //       destination: "/auth/login",
-//   //       permanent: false,
-//   //     },
-//   //   };
-//   // }
-
-//   try {
-//     const res = await axios.get(`http://localhost:3000/api/medi?uuid=${uuid}`);
-//     const mediData = res.data;
-//     return { props: { mediData } };
-//   } catch (error) {
-//     return { props: { data: null } };
-//   }
-// }
-
-const settings = ({ mediData }) => {
+const settings = () => {
   return (
     <Container>
       <Header>설정</Header>
@@ -44,6 +23,7 @@ const settings = ({ mediData }) => {
               <MenuDescription>내 정보에 대한 설정.</MenuDescription>
             </MenuHeader>
             <Image
+              alt="angle"
               src={require("../assets/angle-small-right.svg")}
               width={25}
               height={25}
@@ -52,17 +32,20 @@ const settings = ({ mediData }) => {
         </Content>
         <Content>
           {/* 약 기록 */}
-          <Menu styledmargin={"20px"}>
-            <MenuHeader>
-              <MenuName>약</MenuName>
-              <MenuDescription>내가 먹는 약에 대한 설정.</MenuDescription>
-            </MenuHeader>
-            <Image
-              src={require("../assets/angle-small-right.svg")}
-              width={25}
-              height={25}
-            />
-          </Menu>
+          <Link href="/settings/medication">
+            <Menu styledmargin={"20px"}>
+              <MenuHeader>
+                <MenuName>약</MenuName>
+                <MenuDescription>내가 먹는 약에 대한 설정.</MenuDescription>
+              </MenuHeader>
+              <Image
+                alt="angle"
+                src={require("../assets/angle-small-right.svg")}
+                width={25}
+                height={25}
+              />
+            </Menu>
+          </Link>
           {/* 오늘 한 일 */}
           <Menu styledmargin={"20px"}>
             <MenuHeader>
@@ -70,6 +53,7 @@ const settings = ({ mediData }) => {
               <MenuDescription>내가 한 일에 대한 설정.</MenuDescription>
             </MenuHeader>
             <Image
+              alt="angle"
               src={require("../assets/angle-small-right.svg")}
               width={25}
               height={25}
@@ -82,6 +66,7 @@ const settings = ({ mediData }) => {
               <MenuDescription>나의 상태에 대한 설정.</MenuDescription>
             </MenuHeader>
             <Image
+              alt="angle"
               src={require("../assets/angle-small-right.svg")}
               width={25}
               height={25}
@@ -134,13 +119,11 @@ const Header = styled.div`
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-
   position: relative;
   width: 100%;
   height: min-content;
   background-color: white;
-  /* border-radius: 10px; */
-  padding: 15px 20px;
+  padding: 20px 20px;
   cursor: pointer;
   margin-bottom: 20px;
 `;
