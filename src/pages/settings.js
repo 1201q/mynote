@@ -5,62 +5,95 @@ import { useState } from "react";
 import { getSession } from "next-auth/react";
 import axios from "axios";
 
-const settings = () => {
-  const [setting, setSetting] = useState(false);
-  const [donelist, setDoneList] = useState(false);
+// export async function getServerSideProps(ctx) {
+//   const session = await getSession(ctx);
+//   const uuid = session?.user.uuid;
 
+//   // if (!session) {
+//   //   return {
+//   //     redirect: {
+//   //       destination: "/auth/login",
+//   //       permanent: false,
+//   //     },
+//   //   };
+//   // }
+
+//   try {
+//     const res = await axios.get(`http://localhost:3000/api/medi?uuid=${uuid}`);
+//     const mediData = res.data;
+//     return { props: { mediData } };
+//   } catch (error) {
+//     return { props: { data: null } };
+//   }
+// }
+
+const settings = ({ mediData }) => {
   return (
     <Container>
       <Header>설정</Header>
-      <Wrapper>
-        {!setting ? (
-          <Card layoutId="r" onClick={() => setSetting(true)}>
-            <Text
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.21, delay: 0.3 }}
-            >
-              약 기록
-            </Text>
+      <Wrapper
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.46 }}
+      >
+        <Content>
+          {/* 내 정보 */}
+          <Menu>
+            <MenuHeader>
+              <MenuName>내 정보</MenuName>
+              <MenuDescription>내 정보에 대한 설정.</MenuDescription>
+            </MenuHeader>
             <Image
-              src={require("../assets/angle-small-down.svg")}
-              alt="angle-small-down"
-              width={30}
-              height={30}
+              src={require("../assets/angle-small-right.svg")}
+              width={25}
+              height={25}
             />
-          </Card>
-        ) : (
-          <ExpandedCard layoutId="r" onClick={() => setSetting(false)}>
-            <Text>약 기록</Text>
-          </ExpandedCard>
-        )}
-        {!donelist ? (
-          <Card layoutId="1" onClick={() => setDoneList(true)}>
-            <Text
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.21, delay: 0.3 }}
-            >
-              내가 한 일
-            </Text>
+          </Menu>
+        </Content>
+        <Content>
+          {/* 약 기록 */}
+          <Menu styledmargin={"20px"}>
+            <MenuHeader>
+              <MenuName>약</MenuName>
+              <MenuDescription>내가 먹는 약에 대한 설정.</MenuDescription>
+            </MenuHeader>
             <Image
-              src={require("../assets/angle-small-down.svg")}
-              alt="angle-small-down"
-              width={30}
-              height={30}
+              src={require("../assets/angle-small-right.svg")}
+              width={25}
+              height={25}
             />
-          </Card>
-        ) : (
-          <ExpandedCard layoutId="1" onClick={() => setDoneList(false)}>
-            <Text>내가 한 일</Text>
-          </ExpandedCard>
-        )}
+          </Menu>
+          {/* 오늘 한 일 */}
+          <Menu styledmargin={"20px"}>
+            <MenuHeader>
+              <MenuName>오늘 한 일</MenuName>
+              <MenuDescription>내가 한 일에 대한 설정.</MenuDescription>
+            </MenuHeader>
+            <Image
+              src={require("../assets/angle-small-right.svg")}
+              width={25}
+              height={25}
+            />
+          </Menu>
+          {/* 상태 */}
+          <Menu>
+            <MenuHeader>
+              <MenuName>상태</MenuName>
+              <MenuDescription>나의 상태에 대한 설정.</MenuDescription>
+            </MenuHeader>
+            <Image
+              src={require("../assets/angle-small-right.svg")}
+              width={25}
+              height={25}
+            />
+          </Menu>
+        </Content>
       </Wrapper>
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled(motion.div)`
   position: relative;
   width: 100%;
   height: 100vh;
@@ -68,7 +101,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #fafaff;
+  background-color: #f2f4f6;
 `;
 
 const Wrapper = styled(motion.form)`
@@ -85,7 +118,7 @@ const Wrapper = styled(motion.form)`
   flex-direction: column;
 
   align-items: center;
-  padding: 15px 20px 90px 20px;
+  padding: 15px 0px 0px 0px;
 `;
 
 const Header = styled.div`
@@ -98,50 +131,42 @@ const Header = styled.div`
   color: #2c2d49;
 `;
 
-const Card = styled(motion.div)`
+const Content = styled.div`
   display: flex;
+  flex-direction: column;
+
+  position: relative;
+  width: 100%;
+  height: min-content;
+  background-color: white;
+  /* border-radius: 10px; */
+  padding: 15px 20px;
+  cursor: pointer;
+  margin-bottom: 20px;
+`;
+
+const Menu = styled.div`
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: space-between;
-  position: relative;
   width: 100%;
-  height: 80px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 0px 20px;
-  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.03);
-  color: #747f8c;
-  font-weight: 700;
-  font-size: 25px;
-  cursor: pointer;
-  margin-bottom: 20px;
-
-  img {
-    cursor: pointer;
-  }
+  margin-bottom: ${(props) => props.styledmargin};
 `;
 
-const ExpandedCard = styled(motion.div)`
+const MenuHeader = styled.div`
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  position: relative;
-  width: 100%;
-  height: 250px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 30px 20px;
-  box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.03);
-  color: #747f8c;
-  font-weight: 700;
-  font-size: 25px;
-  cursor: pointer;
-  margin-bottom: 20px;
-
-  img {
-    cursor: pointer;
-  }
+  flex-direction: column;
 `;
 
-const Text = styled(motion.div)``;
+const MenuName = styled.p`
+  font-size: 20px;
+  font-weight: 800;
+  color: #2c2d49;
+  margin-bottom: 5px;
+`;
+const MenuDescription = styled.p`
+  font-size: 15px;
+  color: #c5c5cd;
+`;
 
 export default settings;
